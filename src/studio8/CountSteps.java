@@ -33,19 +33,24 @@ public class CountSteps {
 			
 		}
 		
-		//counting peaks
+		//counting peaks (simple way described in studio page)
+		
 		for(int i=1; i<data.size()-1; i++) {
 			double[] prev=data.get(i-1);
 			double[] curr=data.get(i);
 			double[] next=data.get(i+1);
 			for(int j=0; j<3; j++) { //peaks[]
-				if(curr[j] > prev[j] && curr[j] < next[j]) {
-					peaks[j]++;
-					
+				double limit = 0.2;
+				if(curr[j] > prev[j] && (Math.abs(curr[j]-prev[j])>limit) && curr[j] < next[j] && (Math.abs(curr[j]-next[j])>limit)) {
+					peaks[j]++;	
 				}
-				
 			}
 		}
+		
+		//counting peaks using zero crossings
+		
+		
+		//printing
 		System.out.println("x peaks: "+ peaks[0]+ "\t y peaks: " + peaks[1]+ "\t z peaks: "+ peaks[2]);
 	}
 }
